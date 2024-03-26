@@ -1,0 +1,56 @@
+pipeline{
+     agent any
+	 stages{
+		 stage('test'){
+		     steps{
+				 sh  '''
+					 echo "Hello World"
+				 ''' 
+			    }
+				
+		    }
+         stage('Build-Memory-Details'){
+			 steps{
+				 sh  '''
+				     echo "Memory Details:"
+				     free -mh
+				 '''
+			    }
+		    }
+         stage('Build-OS-Details'){
+             steps{
+                 sh  '''
+                     cat /etc/os-release
+                  '''
+                }
+            }
+         stage('Build-cpu-details')
+             steps{
+                 sh  '''
+                     echo "Cpu deatils: "
+                     lscpu
+                  '''
+                }
+            }
+         stage('Build-private-IP'){
+		     steps{
+				 sh  '''
+				     echo "private IP details: "
+				      ifconfig -a
+				  '''
+		        }
+		    }
+         stage('Build-cal'){
+             steps{
+                 sh  '''
+                     echo "Building the cal: "
+                     cal
+                  '''
+                }
+            }						 
+        }                            
+	}	  
+    
+
+
+
